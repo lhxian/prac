@@ -8,3 +8,4 @@ $DP_{i+1} =GDP_{i}$，我们对矩阵乘使用快速幂即可降低时间复杂�
 
 
 [题目](https://www.luogu.com.cn/problem/P3193)
+[代码](../code/P3193_luogu.cc)
