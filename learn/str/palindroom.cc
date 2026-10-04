@@ -8,26 +8,15 @@ signed main(){
 //constexpr bool doTest = true;
 constexpr bool doTest = false;
 
-int palindroom(string& s,vector<int>& l){
-    if constexpr(doTest) cout<<"s: "<<s<<endl;
-    int n=s.size(), cur =1;
-    l[1]=0;
-    for(int i=2;i<n;++i){
-        int cen = cur;
-        while(cur <i){
-            l[cur] =min(i -1-cur, l[2*cen-cur]);
-            if(l[cur]>= i-1-cur && s[i] == s[2*cur-i]) break;
-            ++cur;
-        }
-        if(cur <i) ++l[cur];
+int palindroom(string& s,vector<int>& d){
+    int ans =0, n =s.size();
+    for(int i=0,l =0,r =-1;i<n;++i){
+        int k =(i >r)? 1: min(d[l+r-i],r -i+1);
+        while(i-k >=0 && i+k <n && s[i-k] ==s[i+k]) ++k;
+        d[i] =k--;
+        if(i+k >r) r =i+k, l=i-k;
     }
-    for(int i=cur+1;i<n;++i) l[i] =min(n-i,l[2*cur-n-1]);
-    int res =0;
-    for(int i=1;i<n;++i) res= max(res,l[i]);
-    if constexpr(doTest){
-        for(int i=0;i<n;++i) cout<<l[i]<<" \n"[i==n-1];
-    }
-    return res;
+    return ans;
 }
 
 void solve(){
