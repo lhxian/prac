@@ -4,4 +4,6 @@ a.out
 *.in
 *.out
 test.cc
+Makefile
+plan.md
 
